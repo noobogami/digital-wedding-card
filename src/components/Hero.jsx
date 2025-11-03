@@ -96,13 +96,14 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 px-4 w-full flex items-center justify-center">
-        <div className="relative w-[500px] max-w-[90vw]">
+        <div className="relative w-[500px] max-w-[90vw]" style={{ minHeight: '650px' }}>
           {/* CARD - Always present, behind envelope */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             style={{ perspective: '2000px' }}
+            className="relative"
           >
         <motion.div
           animate={{
@@ -365,17 +366,18 @@ const Hero = () => {
               duration: 1,
               ease: [0.43, 0.13, 0.23, 0.96],
             }}
-            className="absolute top-0 left-0 w-full flex items-center justify-center"
-            style={{ zIndex: envelopeOpened ? -1 : 10, pointerEvents: envelopeOpened ? 'none' : 'auto' }}
+            className="absolute inset-0 flex items-start justify-center"
+            style={{ zIndex: 100, pointerEvents: envelopeOpened ? 'none' : 'auto', top: '-35px' }}
           >
             <motion.div
-              className="cursor-pointer"
+              className="cursor-pointer bg-gradient-to-br from-pink-100 via-purple-50 to-blue-100"
               whileHover={!envelopeOpened ? { scale: 1.02 } : {}}
               whileTap={!envelopeOpened ? { scale: 0.98 } : {}}
               onClick={() => !envelopeOpened && setEnvelopeOpened(true)}
+              style={{ borderRadius: '1rem' }}
             >
               {/* Envelope Body - Bigger than card */}
-              <div className="relative w-[560px] h-[720px] max-w-[95vw]">
+              <div className="relative w-[560px] h-[720px]">
                 {/* Back of envelope */}
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl shadow-2xl border border-pink-200" />
                 
