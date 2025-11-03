@@ -96,8 +96,19 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 px-4 w-full flex items-center justify-center">
-        <div className="relative w-[500px] max-w-[90vw]" style={{ minHeight: '650px' }}>
-          {/* CARD - Always present, behind envelope */}
+        <motion.div 
+          className="relative min-h-[600px] sm:min-h-[720px]"
+          initial={{ scale: 0.75 }}
+          animate={{ 
+            scale: envelopeOpened ? 1 : 0.75
+          }}
+          transition={{ 
+            duration: 0.6,
+            delay: envelopeOpened ? 0.3 : 0,
+            ease: [0.43, 0.13, 0.23, 0.96]
+          }}
+        >
+          {/* CARD - Always present, behind envelope - Smaller than envelope */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ 
@@ -109,7 +120,7 @@ const Hero = () => {
               y: { duration: 0.8, delay: 0.3 }
             }}
             style={{ perspective: '2000px' }}
-            className="relative"
+            className="relative w-[450px] max-w-[82vw] mx-auto"
           >
         <motion.div
           animate={{
@@ -125,7 +136,7 @@ const Hero = () => {
             transformStyle: 'preserve-3d',
             position: 'relative',
           }}
-          className="w-full min-h-[650px] max-h-[650px]"
+          className="w-full h-[550px] sm:h-[670px]"
         >
           {/* FRONT - Title Card */}
           <motion.div
@@ -141,7 +152,7 @@ const Hero = () => {
                 ? '0 5px 20px rgba(0, 0, 0, 0.15)' 
                 : '0 20px 60px rgba(0, 0, 0, 0.3)',
             }}
-            className="bg-white rounded-3xl p-8 md:p-12 flex flex-col"
+            className="bg-white rounded-3xl p-6 sm:p-8 md:p-12 flex flex-col"
           >
             <AnimatePresence>
               {!showDetails && (
@@ -266,7 +277,7 @@ const Hero = () => {
                 ? '0 20px 60px rgba(0, 0, 0, 0.3)' 
                 : '0 5px 20px rgba(0, 0, 0, 0.15)',
             }}
-            className="bg-white rounded-3xl p-8 md:p-12 flex flex-col overflow-y-auto"
+            className="bg-white rounded-3xl p-6 sm:p-8 md:p-12 flex flex-col overflow-y-auto"
           >
             <AnimatePresence>
               {showDetails && (
@@ -437,13 +448,13 @@ const Hero = () => {
               onClick={() => !envelopeOpened && setEnvelopeOpened(true)}
             >
               {/* Envelope Body - Bigger than card */}
-              <div className="relative w-[560px] h-[720px] bg-gradient-to-br from-pink-100 via-purple-50 to-blue-100 rounded-2xl">
+              <div className="relative w-[500px] max-w-[90vw] h-[600px] sm:h-[720px] bg-gradient-to-br from-pink-100 via-purple-50 to-blue-100 rounded-2xl">
                 {/* Back of envelope */}
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl shadow-2xl border border-pink-200" />
                 
                 {/* Envelope flap - animated */}
                 <motion.div
-                  className="absolute top-0 left-0 right-0 h-[360px] bg-gradient-to-br from-pink-100 to-purple-100 origin-top border-x border-t border-pink-200 rounded-t-2xl"
+                  className="absolute top-0 left-0 right-0 h-[300px] sm:h-[360px] bg-gradient-to-br from-pink-100 to-purple-100 origin-top border-x border-t border-pink-200 rounded-t-2xl"
                   animate={{
                     clipPath: envelopeOpened 
                       ? 'polygon(0 0, 50% 70%, 100% 0)'
@@ -463,7 +474,7 @@ const Hero = () => {
 
                 {/* Wax seal */}
                 <div 
-                  className="absolute top-[330px] left-1/2 -translate-x-1/2 w-24 h-24 z-10"
+                  className="absolute top-[270px] sm:top-[330px] left-1/2 -translate-x-1/2 w-20 h-20 sm:w-24 sm:h-24 z-10"
                 >
                   <motion.div
                     className="w-full h-full bg-gradient-to-br from-red-500 to-red-700 rounded-full shadow-xl flex items-center justify-center"
@@ -479,18 +490,18 @@ const Hero = () => {
                 {/* Decorative elements */}
                 {!envelopeOpened && (
                   <motion.div 
-                    className="absolute bottom-20 left-0 right-0 text-center pointer-events-none"
+                    className="absolute bottom-16 sm:bottom-20 left-0 right-0 text-center pointer-events-none"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
                   >
-                    <p className="text-gray-600 font-vazir text-2xl mb-4">
+                    <p className="text-gray-600 font-vazir text-xl sm:text-2xl mb-3 sm:mb-4">
                       کلیک کنید
                     </p>
                     <div className="flex justify-center gap-2">
-                      <FaHeart className="text-pink-400 text-lg" />
-                      <FaHeart className="text-red-400 text-base" />
-                      <FaHeart className="text-pink-400 text-lg" />
+                      <FaHeart className="text-pink-400 text-base sm:text-lg" />
+                      <FaHeart className="text-red-400 text-sm sm:text-base" />
+                      <FaHeart className="text-pink-400 text-base sm:text-lg" />
                     </div>
                   </motion.div>
                 )}
@@ -518,7 +529,7 @@ const Hero = () => {
               )}
             </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
