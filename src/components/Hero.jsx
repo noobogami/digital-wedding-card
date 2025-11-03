@@ -100,8 +100,14 @@ const Hero = () => {
           {/* CARD - Always present, behind envelope */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            animate={{ 
+              opacity: 1,
+              y: 0 
+            }}
+            transition={{ 
+              opacity: { duration: 0.6, delay: envelopeOpened ? 0.4 : 0.3 },
+              y: { duration: 0.8, delay: 0.3 }
+            }}
             style={{ perspective: '2000px' }}
             className="relative"
           >
@@ -370,14 +376,13 @@ const Hero = () => {
             style={{ zIndex: 100, pointerEvents: envelopeOpened ? 'none' : 'auto', top: '-35px' }}
           >
             <motion.div
-              className="cursor-pointer bg-gradient-to-br from-pink-100 via-purple-50 to-blue-100"
+              className="cursor-pointer relative"
               whileHover={!envelopeOpened ? { scale: 1.02 } : {}}
               whileTap={!envelopeOpened ? { scale: 0.98 } : {}}
               onClick={() => !envelopeOpened && setEnvelopeOpened(true)}
-              style={{ borderRadius: '1rem' }}
             >
               {/* Envelope Body - Bigger than card */}
-              <div className="relative w-[560px] h-[720px]">
+              <div className="relative w-[560px] h-[720px] bg-gradient-to-br from-pink-100 via-purple-50 to-blue-100 rounded-2xl">
                 {/* Back of envelope */}
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl shadow-2xl border border-pink-200" />
                 
@@ -445,7 +450,7 @@ const Hero = () => {
               {/* Pulsing glow effect */}
               {!envelopeOpened && (
                 <motion.div
-                  className="absolute inset-0 rounded-lg pointer-events-none"
+                  className="absolute inset-0 rounded-2xl pointer-events-none -z-10"
                   animate={{
                     boxShadow: [
                       '0 0 20px rgba(236, 72, 153, 0.3)',
