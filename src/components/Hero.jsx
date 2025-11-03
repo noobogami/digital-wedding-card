@@ -177,7 +177,7 @@ const Hero = () => {
                     className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-vazir text-center"
                   >
                     {/* PLACEHOLDER: Replace with couple names */}
-                    عروس و داماد
+                    آتنا و علی
                   </motion.h1>
 
                   {/* Wedding Title */}
@@ -187,7 +187,7 @@ const Hero = () => {
                     transition={{ duration: 0.5, delay: 0.4 }}
                     className="text-xl md:text-2xl text-gray-600 mb-8 font-vazir text-center"
                   >
-                    جشن عروسی
+                    جشن بله برون- نامزدی
                   </motion.div>
 
                   {/* Decorative Line */}
@@ -207,13 +207,13 @@ const Hero = () => {
                   >
                     <p className="text-lg md:text-xl text-gray-700 font-vazir mb-2">
                       {/* PLACEHOLDER: Replace with actual date */}
-                      روز جمعه
+                      روز پنجشنبه
                     </p>
                     <p className="text-2xl md:text-3xl font-bold text-purple-600 font-vazir mb-2">
-                      ۱۵ آذر ۱۴۰۴
+                      ۱۳ آذر ۱۴۰۴
                     </p>
                     <p className="text-base md:text-lg text-gray-600 font-vazir">
-                      ساعت ۱۸:۰۰
+                      ساعت ۱۹:۰۰
                     </p>
                   </motion.div>
                 </div>
@@ -306,7 +306,7 @@ const Hero = () => {
                       <p className="text-sm text-gray-500 font-vazir mb-1">زمان</p>
                       <p className="text-lg font-semibold text-gray-800 font-vazir">
                         {/* PLACEHOLDER: Replace with actual date/time */}
-                        جمعه، ۱۵ آذر ۱۴۰۴ - ساعت ۱۸:۰۰
+                        پنجشنبه، ۱۳ آذر ۱۴۰۴ - ساعت ۱۹:۰۰
                       </p>
                     </div>
                   </div>
@@ -320,7 +320,7 @@ const Hero = () => {
                       <p className="text-sm text-gray-500 font-vazir mb-1">محل برگزاری</p>
                       <p className="text-base font-semibold text-gray-800 font-vazir leading-relaxed">
                         {/* PLACEHOLDER: Replace with actual venue */}
-                        تهران، خیابان ولیعصر، تالار پذیرایی
+                        پاسداران - انتهای بوستان دوم- خ افشاری (ساقدوش)
                       </p>
                     </div>
                   </div>

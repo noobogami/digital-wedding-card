@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  wedding-card:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: digital-wedding-card
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    # Optional: Add environment variables if needed
+    # environment:
+    #   - NODE_ENV=production
+

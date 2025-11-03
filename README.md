@@ -19,10 +19,17 @@ A beautiful and modern wedding website with full Persian/Farsi language support.
 
 ### Prerequisites
 
+**Option A: Local Development**
 - Node.js 16+ installed
 - npm or yarn package manager
 
-### Installation
+**Option B: Docker (Recommended for Deployment)**
+- Docker installed
+- Docker Compose (optional)
+
+### Installation & Running
+
+#### Local Development
 
 1. Install dependencies:
 ```bash
@@ -35,6 +42,21 @@ npm run dev
 ```
 
 3. Open your browser and visit `http://localhost:5173`
+
+#### Docker Deployment
+
+```bash
+# Using Docker Compose (easiest)
+docker-compose up -d
+
+# Or using Docker directly
+docker build -t wedding-card .
+docker run -d -p 8080:80 wedding-card
+
+# Visit: http://localhost:8080
+```
+
+See [DOCKER_GUIDE.md](DOCKER_GUIDE.md) for detailed Docker instructions.
 
 ### Build for Production
 
@@ -166,7 +188,14 @@ digital-wedding-card/
 
 ## 🚀 Deployment Options
 
-### Vercel (Recommended)
+### Docker (Recommended)
+```bash
+docker-compose up -d
+# Deploy container to any cloud platform
+```
+See [DOCKER_GUIDE.md](DOCKER_GUIDE.md) for complete deployment instructions.
+
+### Vercel
 ```bash
 npm install -g vercel
 vercel
@@ -184,8 +213,8 @@ npm run build
 # Deploy the 'dist' folder to your gh-pages branch
 ```
 
-### Any Static Hosting
-Build the project and upload the `dist` folder to your hosting provider.
+### Any Static Hosting or VPS
+Build the project and upload the `dist` folder to your hosting provider, or use Docker.
 
 ## 🔍 Tips for Best Results
 
