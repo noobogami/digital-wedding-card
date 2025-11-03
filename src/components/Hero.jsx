@@ -3,6 +3,7 @@ import { FaHeart, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { useState } from 'react';
 
 const Hero = () => {
+  const [envelopeOpened, setEnvelopeOpened] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
 
   return (
@@ -93,8 +94,16 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Content - Card Style with 3D Perspective */}
-      <div className="relative z-10 px-4 w-full flex items-center justify-center" style={{ perspective: '2000px' }}>
+      {/* Content */}
+      <div className="relative z-10 px-4 w-full flex items-center justify-center">
+        <div className="relative w-[500px] max-w-[90vw]">
+          {/* CARD - Always present, behind envelope */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            style={{ perspective: '2000px' }}
+          >
         <motion.div
           animate={{
             rotateY: showDetails ? 180 : 0,
@@ -109,7 +118,7 @@ const Hero = () => {
             transformStyle: 'preserve-3d',
             position: 'relative',
           }}
-          className="max-w-lg w-full min-h-[600px]"
+          className="w-full min-h-[650px]"
         >
           {/* FRONT - Title Card */}
           <motion.div
@@ -344,6 +353,110 @@ const Hero = () => {
             </AnimatePresence>
           </motion.div>
         </motion.div>
+          </motion.div>
+
+          {/* ENVELOPE - Slides down on click to reveal card */}
+          <motion.div
+            initial={{ y: 0 }}
+            animate={{ 
+              y: envelopeOpened ? 900 : 0,
+            }}
+            transition={{ 
+              duration: 1,
+              ease: [0.43, 0.13, 0.23, 0.96],
+            }}
+            className="absolute top-0 left-0 w-full flex items-center justify-center"
+            style={{ zIndex: envelopeOpened ? -1 : 10, pointerEvents: envelopeOpened ? 'none' : 'auto' }}
+          >
+            <motion.div
+              className="cursor-pointer"
+              whileHover={!envelopeOpened ? { scale: 1.02 } : {}}
+              whileTap={!envelopeOpened ? { scale: 0.98 } : {}}
+              onClick={() => !envelopeOpened && setEnvelopeOpened(true)}
+            >
+              {/* Envelope Body - Bigger than card */}
+              <div className="relative w-[560px] h-[720px] max-w-[95vw]">
+                {/* Back of envelope */}
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl shadow-2xl border border-pink-200" />
+                
+                {/* Envelope flap - animated */}
+                <motion.div
+                  className="absolute top-0 left-0 right-0 h-[360px] bg-gradient-to-br from-pink-100 to-purple-100 origin-top border-x border-t border-pink-200 rounded-t-2xl"
+                  animate={{
+                    clipPath: envelopeOpened 
+                      ? 'polygon(0 0, 50% 70%, 100% 0)'
+                      : 'polygon(0 0, 50% 65%, 100% 0)',
+                  }}
+                  whileHover={!envelopeOpened ? {
+                    clipPath: 'polygon(0 0, 50% 55%, 100% 0)',
+                  } : {}}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Flap shadow/depth */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-purple-200/30" />
+                  
+                  {/* Flap decorative border */}
+                  <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pink-300 to-transparent" />
+                </motion.div>
+
+                {/* Wax seal */}
+                <div 
+                  className="absolute top-[330px] left-1/2 -translate-x-1/2 w-24 h-24 z-10"
+                >
+                  <motion.div
+                    className="w-full h-full bg-gradient-to-br from-red-500 to-red-700 rounded-full shadow-xl flex items-center justify-center"
+                    whileHover={!envelopeOpened ? { scale: 1.1, rotate: 5 } : {}}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    <FaHeart className="text-white text-4xl" />
+                    {/* Seal texture */}
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
+                  </motion.div>
+                </div>
+
+                {/* Decorative elements */}
+                {!envelopeOpened && (
+                  <motion.div 
+                    className="absolute bottom-20 left-0 right-0 text-center pointer-events-none"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                  >
+                    <p className="text-gray-600 font-vazir text-2xl mb-4">
+                      کلیک کنید
+                    </p>
+                    <div className="flex justify-center gap-2">
+                      <FaHeart className="text-pink-400 text-lg" />
+                      <FaHeart className="text-red-400 text-base" />
+                      <FaHeart className="text-pink-400 text-lg" />
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Envelope decoration - corner flourishes */}
+                <div className="absolute top-6 right-6 w-10 h-10 border-t-2 border-r-2 border-pink-300 opacity-40 pointer-events-none" />
+                <div className="absolute top-6 left-6 w-10 h-10 border-t-2 border-l-2 border-pink-300 opacity-40 pointer-events-none" />
+                <div className="absolute bottom-6 right-6 w-10 h-10 border-b-2 border-r-2 border-pink-300 opacity-40 pointer-events-none" />
+                <div className="absolute bottom-6 left-6 w-10 h-10 border-b-2 border-l-2 border-pink-300 opacity-40 pointer-events-none" />
+              </div>
+
+              {/* Pulsing glow effect */}
+              {!envelopeOpened && (
+                <motion.div
+                  className="absolute inset-0 rounded-lg pointer-events-none"
+                  animate={{
+                    boxShadow: [
+                      '0 0 20px rgba(236, 72, 153, 0.3)',
+                      '0 0 40px rgba(236, 72, 153, 0.5)',
+                      '0 0 20px rgba(236, 72, 153, 0.3)',
+                    ],
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              )}
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </div>
   );
