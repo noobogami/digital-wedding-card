@@ -318,24 +318,42 @@ const Hero = () => {
                     </div>
                     <div className="flex-1">
                       <p className="text-sm text-gray-500 font-vazir mb-1">محل برگزاری</p>
-                      <p className="text-lg font-semibold text-gray-800 font-vazir leading-relaxed">
+                      <p className="text-base font-semibold text-gray-800 font-vazir leading-relaxed">
                         {/* PLACEHOLDER: Replace with actual venue */}
                         تهران، خیابان ولیعصر، تالار پذیرایی
                       </p>
                     </div>
                   </div>
 
-                  {/* Message */}
+                  {/* Map - OpenStreetMap (Free, No API Key!) */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.5 }}
-                    className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 mt-6"
+                    className="rounded-xl overflow-hidden border border-gray-200"
                   >
-                    <p className="text-base text-gray-700 text-center font-vazir leading-relaxed">
-                      {/* PLACEHOLDER: Replace with your message */}
-                      حضور گرم شما در این مراسم مایه مسرت ماست
-                    </p>
+                    {/* PLACEHOLDER: Update latitude and longitude for your venue */}
+                    {/* 100% Free - No API key, No payment, No registration! */}
+                    <iframe
+                      src="https://www.openstreetmap.org/export/embed.html?bbox=51.3800,35.6800,51.3980,35.6980&layer=mapnik&marker=35.6892,51.3890"
+                      width="100%"
+                      height="192"
+                      style={{ border: 0 }}
+                      allowFullScreen=""
+                      loading="lazy"
+                      title="محل برگزاری مراسم"
+                    />
+                    {/* 
+                      HOW TO CUSTOMIZE:
+                      1. Go to https://www.openstreetmap.org
+                      2. Search for your venue
+                      3. Click "Share" button on the right
+                      4. Click "HTML" tab
+                      5. Copy the iframe src URL and replace above
+                      
+                      Or manually update coordinates:
+                      Replace 35.6892,51.3890 with your venue's latitude,longitude
+                    */}
                   </motion.div>
                 </motion.div>
 
