@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: digital-wedding-card
     ports:
-      - "8080:80"
+      - "5989:80"
     restart: unless-stopped
     # Optional: Add environment variables if needed
     # environment:

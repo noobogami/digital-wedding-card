@@ -213,8 +213,11 @@ npm run build
 # Deploy the 'dist' folder to your gh-pages branch
 ```
 
-### Any Static Hosting or VPS
-Build the project and upload the `dist` folder to your hosting provider, or use Docker.
+### nginx on VPS
+See [DEPLOYMENT_NGINX.md](DEPLOYMENT_NGINX.md) for complete nginx setup guide.
+
+### Any Static Hosting
+Build the project and upload the `dist` folder to your hosting provider.
 
 ## 🔍 Tips for Best Results
 
