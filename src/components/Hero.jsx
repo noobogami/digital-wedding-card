@@ -342,7 +342,7 @@ const Hero = () => {
                       <p className="text-sm text-gray-500 font-vazir mb-1">محل برگزاری</p>
                       <p className="text-base font-semibold text-gray-800 font-vazir leading-relaxed">
                         {/* PLACEHOLDER: Replace with actual venue */}
-                        پاسداران - انتهای بوستان دوم- خ افشاری (ساقدوش)
+                        پاسداران - انتهای بوستان دوم- خ افشاری (ساقدوش) - تالار پذیرایی ساقدوش
                       </p>
                     </div>
                   </div>
