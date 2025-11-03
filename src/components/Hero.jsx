@@ -330,30 +330,45 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.5 }}
-                    className="rounded-xl overflow-hidden border border-gray-200"
+                    className="space-y-3"
                   >
-                    {/* PLACEHOLDER: Update latitude and longitude for your venue */}
-                    {/* 100% Free - No API key, No payment, No registration! */}
-                    <iframe
-                      src="https://www.openstreetmap.org/export/embed.html?bbox=51.3800,35.6800,51.3980,35.6980&layer=mapnik&marker=35.6892,51.3890"
-                      width="100%"
-                      height="192"
-                      style={{ border: 0 }}
-                      allowFullScreen=""
-                      loading="lazy"
-                      title="محل برگزاری مراسم"
-                    />
-                    {/* 
-                      HOW TO CUSTOMIZE:
-                      1. Go to https://www.openstreetmap.org
-                      2. Search for your venue
-                      3. Click "Share" button on the right
-                      4. Click "HTML" tab
-                      5. Copy the iframe src URL and replace above
-                      
-                      Or manually update coordinates:
-                      Replace 35.6892,51.3890 with your venue's latitude,longitude
-                    */}
+                    <div className="rounded-xl overflow-hidden border border-gray-200">
+                      {/* PLACEHOLDER: Update latitude and longitude for your venue */}
+                      {/* 100% Free - No API key, No payment, No registration! */}
+                      <iframe
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=51.465990543365486%2C35.761762205235705%2C51.47430539131165%2C35.765893074672434&amp;layer=mapnik&amp;marker=35.7638266%2C51.4701472"
+                        width="100%"
+                        height="192"
+                        style={{ border: 0 }}
+                        allowFullScreen=""
+                        loading="lazy"
+                        title="محل برگزاری مراسم"
+                      />
+                      {/* 
+                        HOW TO CUSTOMIZE:
+                        1. Go to https://www.openstreetmap.org
+                        2. Search for your venue
+                        3. Click "Share" button on the right
+                        4. Click "HTML" tab
+                        5. Copy the iframe src URL and replace above
+                        
+                        Or manually update coordinates:
+                        Replace 35.6892,51.3890 with your venue's latitude,longitude
+                      */}
+                    </div>
+                    
+                    {/* Navigation Button */}
+                    <motion.a
+                      href="https://www.google.com/maps/dir/?api=1&destination=35.7638266,51.4701472"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-3 rounded-xl font-semibold shadow-md hover:shadow-lg transition-all"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <FaMapMarkerAlt className="text-lg" />
+                      <span className="font-vazir">مسیریابی و راهنما</span>
+                    </motion.a>
                   </motion.div>
                 </motion.div>
 
