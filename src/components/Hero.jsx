@@ -125,7 +125,7 @@ const Hero = () => {
             transformStyle: 'preserve-3d',
             position: 'relative',
           }}
-          className="w-full min-h-[650px]"
+          className="w-full min-h-[650px] max-h-[650px]"
         >
           {/* FRONT - Title Card */}
           <motion.div
@@ -266,7 +266,7 @@ const Hero = () => {
                 ? '0 20px 60px rgba(0, 0, 0, 0.3)' 
                 : '0 5px 20px rgba(0, 0, 0, 0.15)',
             }}
-            className="bg-white rounded-3xl p-8 md:p-12 flex flex-col"
+            className="bg-white rounded-3xl p-8 md:p-12 flex flex-col overflow-y-auto"
           >
             <AnimatePresence>
               {showDetails && (
@@ -277,25 +277,47 @@ const Hero = () => {
                   transition={{ duration: 0.2, delay: 0.3 }}
                   className="flex flex-col justify-between h-full"
                 >
-                {/* Header */}
+                {/* Header with Beautiful Message */}
                 <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.2 }}
-                  className="text-center mb-8"
+                  className="text-center mb-6"
                 >
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-800 font-vazir mb-2">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-800 font-vazir mb-4">
                     جزئیات مراسم
                   </h2>
-                  <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full mt-4" />
+                  
+                  {/* Beautiful Message */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 rounded-2xl p-4 mb-4 border border-pink-200"
+                  >
+                    <p className="text-sm text-gray-700 font-vazir leading-relaxed mb-2">
+                      قرار است قصه دلهایمان از همین جا آغاز شود.
+                    </p>
+                    <div className="flex items-center justify-center gap-2 my-3">
+                      <div className="h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent flex-1" />
+                      <FaHeart className="text-red-400 text-lg" />
+                      <div className="h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent flex-1" />
+                    </div>
+                    <p className="text-xl font-bold text-purple-600 font-vazir mb-2">
+                      آتنا و علی
+                    </p>
+                    <p className="text-sm text-gray-700 font-vazir leading-relaxed">
+                      با عشق قدم در مسیر تازه‌ای گذاشته‌اند و چه زیبا و خاطره‌انگیز است اگر شما هم شریک این لبخند و شادی باشید و این شب را به‌یادماندنی و پرشورتر کنید.
+                    </p>
+                  </motion.div>
                 </motion.div>
 
                 {/* Minimal Details */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.4, delay: 0.3 }}
-                  className="flex-1 space-y-6"
+                  transition={{ duration: 0.4, delay: 0.6 }}
+                  className="flex-1 space-y-4"
                 >
                   {/* Date & Time */}
                   <div className="flex items-start gap-4">
@@ -330,7 +352,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.5 }}
-                    className="space-y-3"
+                    className="space-y-2"
                   >
                     <div className="rounded-xl overflow-hidden border border-gray-200">
                       {/* PLACEHOLDER: Update latitude and longitude for your venue */}
@@ -338,7 +360,7 @@ const Hero = () => {
                       <iframe
                         src="https://www.openstreetmap.org/export/embed.html?bbox=51.465990543365486%2C35.761762205235705%2C51.47430539131165%2C35.765893074672434&amp;layer=mapnik&amp;marker=35.7638266%2C51.4701472"
                         width="100%"
-                        height="192"
+                        height="140"
                         style={{ border: 0 }}
                         allowFullScreen=""
                         loading="lazy"
@@ -362,12 +384,12 @@ const Hero = () => {
                       href="https://www.google.com/maps/dir/?api=1&destination=35.7638266,51.4701472"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-3 rounded-xl font-semibold shadow-md hover:shadow-lg transition-all"
+                      className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-3 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg transition-all text-sm"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <FaMapMarkerAlt className="text-lg" />
-                      <span className="font-vazir">مسیریابی و راهنما</span>
+                      <FaMapMarkerAlt className="text-base" />
+                      <span className="font-vazir">مسیریابی</span>
                     </motion.a>
                   </motion.div>
                 </motion.div>
