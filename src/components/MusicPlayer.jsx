@@ -13,28 +13,15 @@ const MusicPlayer = ({ shouldPlay }) => {
   useEffect(() => {
     if (shouldPlay && !isPlaying) {
       const playAudio = async () => {
-        console.log('🎵 Attempting to play music...');
-        console.log('Audio element:', audioRef.current);
-        console.log('Audio src:', audioRef.current?.src);
-        
         try {
           if (audioRef.current) {
-            // Check if audio file is loaded
-            console.log('Audio ready state:', audioRef.current.readyState);
-            
             audioRef.current.volume = volume;
             await audioRef.current.play();
-            
-            console.log('✅ Music playing successfully!');
             setIsPlaying(true);
-            setShowPlayer(true);
           }
         } catch (error) {
-          console.error('❌ Music play error:', error);
-          console.error('Error name:', error.name);
-          console.error('Error message:', error.message);
+          console.error('Music play error:', error.message);
           setIsPlaying(false);
-          setShowPlayer(true); // Show player so user can manually play
         }
       };
 
