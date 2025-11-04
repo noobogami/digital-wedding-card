@@ -29,6 +29,17 @@ RUN echo 'server { \
     server_name localhost; \
     root /usr/share/nginx/html; \
     index index.html; \
+    \
+    # Increase client body size for file uploads \
+    client_max_body_size 50M; \
+    \
+    # Serve static files with correct MIME types \
+    location ~* \.(mp3|mp4|ogg|wav)$ { \
+        add_header Content-Type audio/mpeg; \
+        add_header Cache-Control "public, max-age=31536000"; \
+        try_files $uri =404; \
+    } \
+    \
     location / { \
         try_files $uri $uri/ /index.html; \
     } \
