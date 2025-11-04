@@ -5,8 +5,8 @@ import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute, FaMusic } from 'react-icons/
 const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [volume, setVolume] = useState(0.5);
-  const [showPlayer, setShowPlayer] = useState(true);
+  const [volume, setVolume] = useState(0.4);
+  const [showPlayer, setShowPlayer] = useState(false);
   const audioRef = useRef(null);
 
   useEffect(() => {
