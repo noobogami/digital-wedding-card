@@ -2,32 +2,34 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute, FaMusic } from 'react-icons/fa';
 
-const MusicPlayer = () => {
+const MusicPlayer = ({ shouldPlay }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(0.4);
   const [showPlayer, setShowPlayer] = useState(false);
   const audioRef = useRef(null);
 
+  // Play music when envelope opens
   useEffect(() => {
-    // Auto-play attempt (will work after user interaction due to browser policies)
-    const playAudio = async () => {
-      try {
-        if (audioRef.current) {
-          audioRef.current.volume = volume;
-          await audioRef.current.play();
-          setIsPlaying(true);
+    if (shouldPlay && !isPlaying) {
+      const playAudio = async () => {
+        try {
+          if (audioRef.current) {
+            audioRef.current.volume = volume;
+            await audioRef.current.play();
+            setIsPlaying(true);
+          }
+        } catch (error) {
+          console.log('Auto-play prevented:', error);
+          setIsPlaying(false);
         }
-      } catch (error) {
-        console.log('Auto-play prevented. User interaction required.');
-        setIsPlaying(false);
-      }
-    };
+      };
 
-    // Try to play after a short delay
-    const timer = setTimeout(playAudio, 1000);
-    return () => clearTimeout(timer);
-  }, []);
+      // Small delay to let the envelope animation start
+      const timer = setTimeout(playAudio, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [shouldPlay]);
 
   const togglePlay = async () => {
     if (audioRef.current) {

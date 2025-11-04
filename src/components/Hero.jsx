@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaHeart, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 
-const Hero = () => {
+const Hero = ({ onEnvelopeOpen }) => {
   const [envelopeOpened, setEnvelopeOpened] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [confetti, setConfetti] = useState([]);
@@ -671,7 +671,12 @@ const Hero = () => {
               className="cursor-pointer relative"
               whileHover={!envelopeOpened ? { scale: 1.02 } : {}}
               whileTap={!envelopeOpened ? { scale: 0.98 } : {}}
-              onClick={() => !envelopeOpened && setEnvelopeOpened(true)}
+              onClick={() => {
+                if (!envelopeOpened) {
+                  setEnvelopeOpened(true);
+                  onEnvelopeOpen?.();
+                }
+              }}
             >
               {/* Envelope Body - Bigger than card */}
               <div className="relative w-[500px] max-w-[90vw] h-[600px] sm:h-[720px] bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 rounded-2xl">
