@@ -682,69 +682,6 @@ const Hero = ({ onEnvelopeOpen }) => {
               <div className="relative w-[500px] max-w-[90vw] h-[600px] sm:h-[720px] bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 rounded-2xl">
                 {/* Back of envelope */}
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 rounded-2xl shadow-2xl border-2 border-pink-300" />
-                
-                {/* Sparkle decorations */}
-                <motion.div
-                  className="absolute top-10 left-10 text-yellow-400 text-2xl"
-                  animate={{
-                    scale: [1, 1.5, 1],
-                    rotate: [0, 180, 360],
-                    opacity: [0.5, 1, 0.5],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  ✨
-                </motion.div>
-                <motion.div
-                  className="absolute top-20 right-10 text-yellow-400 text-xl"
-                  animate={{
-                    scale: [1, 1.5, 1],
-                    rotate: [0, 180, 360],
-                    opacity: [0.5, 1, 0.5],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5,
-                  }}
-                >
-                  ✨
-                </motion.div>
-                <motion.div
-                  className="absolute bottom-20 left-1/4 text-pink-400 text-3xl"
-                  animate={{
-                    y: [0, -20, 0],
-                    opacity: [0.6, 1, 0.6],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  💕
-                </motion.div>
-                <motion.div
-                  className="absolute bottom-32 right-1/4 text-purple-400 text-2xl"
-                  animate={{
-                    y: [0, -20, 0],
-                    opacity: [0.6, 1, 0.6],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1,
-                  }}
-                >
-                  💝
-                </motion.div>
-                
                 {/* Envelope flap - animated */}
                 <motion.div
                   className="absolute top-0 left-0 right-0 h-[300px] sm:h-[360px] bg-gradient-to-br from-pink-200 via-purple-200 to-blue-200 origin-top border-x border-t border-pink-300 rounded-t-2xl"
@@ -763,24 +700,6 @@ const Hero = ({ onEnvelopeOpen }) => {
                   
                   {/* Flap decorative border */}
                   <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent" />
-                  
-                  {/* Fun decorative patterns on flap */}
-                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <motion.div
-                      className="absolute top-10 left-1/4 text-pink-300 text-xl opacity-50"
-                      animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                    >
-                      ❤️
-                    </motion.div>
-                    <motion.div
-                      className="absolute top-16 right-1/4 text-purple-300 text-lg opacity-50"
-                      animate={{ rotate: [360, 0] }}
-                      transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                    >
-                      💜
-                    </motion.div>
-                  </div>
                 </motion.div>
 
                 {/* Wax seal */}

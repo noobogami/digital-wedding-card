@@ -7,21 +7,26 @@ const MusicPlayer = ({ shouldPlay }) => {
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(0.4);
   const [showPlayer, setShowPlayer] = useState(false);
+  const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
   const audioRef = useRef(null);
 
-  // Play music when envelope opens
+  // Play music when envelope opens (only once)
   useEffect(() => {
-    if (shouldPlay && !isPlaying) {
+    if (shouldPlay && !hasAutoPlayed) {
       const playAudio = async () => {
         try {
           if (audioRef.current) {
             audioRef.current.volume = volume;
             await audioRef.current.play();
             setIsPlaying(true);
+            setHasAutoPlayed(true); // Mark that we've tried to auto-play
+            setShowPlayer(false);
           }
         } catch (error) {
           console.error('Music play error:', error.message);
           setIsPlaying(false);
+          setHasAutoPlayed(true); // Don't keep trying
+          setShowPlayer(false); // Show player so user can manually start
         }
       };
 
@@ -29,7 +34,7 @@ const MusicPlayer = ({ shouldPlay }) => {
       const timer = setTimeout(playAudio, 500);
       return () => clearTimeout(timer);
     }
-  }, [shouldPlay, volume, isPlaying]);
+  }, [shouldPlay, hasAutoPlayed, volume]);
 
   const togglePlay = async () => {
     if (audioRef.current) {
