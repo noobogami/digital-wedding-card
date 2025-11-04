@@ -13,15 +13,28 @@ const MusicPlayer = ({ shouldPlay }) => {
   useEffect(() => {
     if (shouldPlay && !isPlaying) {
       const playAudio = async () => {
+        console.log('🎵 Attempting to play music...');
+        console.log('Audio element:', audioRef.current);
+        console.log('Audio src:', audioRef.current?.src);
+        
         try {
           if (audioRef.current) {
+            // Check if audio file is loaded
+            console.log('Audio ready state:', audioRef.current.readyState);
+            
             audioRef.current.volume = volume;
             await audioRef.current.play();
+            
+            console.log('✅ Music playing successfully!');
             setIsPlaying(true);
+            setShowPlayer(true);
           }
         } catch (error) {
-          console.log('Auto-play prevented:', error);
+          console.error('❌ Music play error:', error);
+          console.error('Error name:', error.name);
+          console.error('Error message:', error.message);
           setIsPlaying(false);
+          setShowPlayer(true); // Show player so user can manually play
         }
       };
 
@@ -29,7 +42,7 @@ const MusicPlayer = ({ shouldPlay }) => {
       const timer = setTimeout(playAudio, 500);
       return () => clearTimeout(timer);
     }
-  }, [shouldPlay]);
+  }, [shouldPlay, volume, isPlaying]);
 
   const togglePlay = async () => {
     if (audioRef.current) {
@@ -84,7 +97,7 @@ const MusicPlayer = ({ shouldPlay }) => {
           2. Update the src attribute below
           3. Or use a URL to a hosted music file
         */}
-        <source src="/music/background-music.mp3" type="audio/mpeg" />
+        <source src="/music/background-music.mp3?v=2" type="audio/mpeg" />
         مرورگر شما از پخش موسیقی پشتیبانی نمی‌کند.
       </audio>
 
