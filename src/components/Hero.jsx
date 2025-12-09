@@ -1,12 +1,18 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaHeart, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
+import { weddingConfig } from '../config';
 
 const Hero = ({ onEnvelopeOpen }) => {
   const [envelopeOpened, setEnvelopeOpened] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [confetti, setConfetti] = useState([]);
   const [floatingHearts, setFloatingHearts] = useState([]);
+
+  // Generate map URLs from config
+  const { latitude, longitude } = weddingConfig.location.coordinates;
+  const mapEmbedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${longitude-0.004}%2C${latitude-0.002}%2C${longitude+0.004}%2C${latitude+0.002}&layer=mapnik&marker=${latitude}%2C${longitude}`;
+  const navigationUrl = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
 
   // Generate confetti when envelope opens
   useEffect(() => {
@@ -309,10 +315,9 @@ const Hero = ({ onEnvelopeOpen }) => {
                       damping: 15,
                       delay: 0.3 
                     }}
-                    className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 bg-clip-text text-transparent mb-2 font-vazir text-center"
+                    className={`text-5xl md:text-6xl font-bold bg-gradient-to-r ${weddingConfig.theme.titleGradient} bg-clip-text text-transparent mb-2 font-vazir text-center`}
                   >
-                    {/* PLACEHOLDER: Replace with couple names */}
-                    آتنا و علی
+                    {weddingConfig.couple.bride} و {weddingConfig.couple.groom}
                   </motion.h1>
 
                   {/* Wedding Title */}
@@ -327,9 +332,9 @@ const Hero = ({ onEnvelopeOpen }) => {
                       stiffness: 150,
                       delay: 0.4 
                     }}
-                    className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent mb-4 font-vazir text-center px-4"
+                    className={`text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r ${weddingConfig.theme.subtitleGradient} bg-clip-text text-transparent mb-4 font-vazir text-center px-4`}
                   >
-                    🎊 جشن بله برون - نامزدی 🎊
+                    🎊 {weddingConfig.event.type} 🎊
                   </motion.div>
 
                   {/* Decorative Line */}
@@ -369,8 +374,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                         ease: "easeInOut",
                       }}
                     >
-                      {/* PLACEHOLDER: Replace with actual date */}
-                      📅 روز پنجشنبه
+                      📅 {weddingConfig.event.date.dayName}
                     </motion.p>
                     <motion.p 
                       className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent font-vazir mb-1"
@@ -383,7 +387,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                         ease: "easeInOut",
                       }}
                     >
-                      ۱۳ آذر ۱۴۰۴
+                      {weddingConfig.event.date.persianDate}
                     </motion.p>
                     <motion.p 
                       className="text-lg md:text-xl font-semibold text-pink-600 font-vazir"
@@ -397,7 +401,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                         delay: 0.5,
                       }}
                     >
-                      ⏰ ساعت ۱۹:۰۰
+                      ⏰ ساعت {weddingConfig.event.date.time}
                     </motion.p>
                   </motion.div>
                 </div>
@@ -411,7 +415,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                 >
                   <motion.button
                     onClick={() => setShowDetails(true)}
-                    className="inline-block bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white px-8 py-3 rounded-full text-base md:text-xl font-bold shadow-xl font-vazir"
+                    className={`inline-block bg-gradient-to-r ${weddingConfig.theme.buttonGradient} text-white px-8 py-3 rounded-full text-base md:text-xl font-bold shadow-xl font-vazir`}
                     whileHover={{ 
                       scale: 1.1,
                       rotate: [0, -2, 2, -2, 0],
@@ -533,7 +537,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                     className="bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 rounded-2xl p-4 mb-4 border border-pink-200"
                   >
                     <p className="text-sm text-gray-700 font-vazir leading-relaxed mb-2">
-                      قرار است قصه دلهایمان از همین جا آغاز شود.
+                      {weddingConfig.message.intro}
                     </p>
                     <div className="flex items-center justify-center gap-2 my-3">
                       <div className="h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent flex-1" />
@@ -541,10 +545,10 @@ const Hero = ({ onEnvelopeOpen }) => {
                       <div className="h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent flex-1" />
                     </div>
                     <p className="text-xl font-bold text-purple-600 font-vazir mb-2">
-                      آتنا و علی
+                      {weddingConfig.message.coupleNames}
                     </p>
                     <p className="text-sm text-gray-700 font-vazir leading-relaxed">
-                      با عشق قدم در مسیر تازه‌ای گذاشته‌اند و چه زیبا و خاطره‌انگیز است اگر شما هم شریک این لبخند و شادی باشید و این شب را به‌یادماندنی و پرشورتر کنید.
+                      {weddingConfig.message.body}
                     </p>
                   </motion.div>
                 </motion.div>
@@ -564,8 +568,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                     <div className="flex-1">
                       <p className="text-sm text-gray-500 font-vazir mb-1">زمان</p>
                       <p className="text-lg font-semibold text-gray-800 font-vazir">
-                        {/* PLACEHOLDER: Replace with actual date/time */}
-                        پنجشنبه، ۱۳ آذر ۱۴۰۴ - ساعت ۱۹:۰۰
+                        {weddingConfig.event.date.dayName}، {weddingConfig.event.date.persianDate} - ساعت {weddingConfig.event.date.time}
                       </p>
                     </div>
                   </div>
@@ -578,8 +581,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                     <div className="flex-1">
                       <p className="text-sm text-gray-500 font-vazir mb-1">محل برگزاری</p>
                       <p className="text-base font-semibold text-gray-800 font-vazir leading-relaxed">
-                        {/* PLACEHOLDER: Replace with actual venue */}
-                        پاسداران - انتهای بوستان دوم- خ افشاری (ساقدوش) - تالار پذیرایی ساقدوش
+                        {weddingConfig.location.address}
                       </p>
                     </div>
                   </div>
@@ -592,10 +594,8 @@ const Hero = ({ onEnvelopeOpen }) => {
                     className="space-y-2"
                   >
                     <div className="rounded-xl overflow-hidden border border-gray-200">
-                      {/* PLACEHOLDER: Update latitude and longitude for your venue */}
-                      {/* 100% Free - No API key, No payment, No registration! */}
                       <iframe
-                        src="https://www.openstreetmap.org/export/embed.html?bbox=51.465990543365486%2C35.761762205235705%2C51.47430539131165%2C35.765893074672434&amp;layer=mapnik&amp;marker=35.7638266%2C51.4701472"
+                        src={mapEmbedUrl}
                         width="100%"
                         height="140"
                         style={{ border: 0 }}
@@ -603,22 +603,11 @@ const Hero = ({ onEnvelopeOpen }) => {
                         loading="lazy"
                         title="محل برگزاری مراسم"
                       />
-                      {/* 
-                        HOW TO CUSTOMIZE:
-                        1. Go to https://www.openstreetmap.org
-                        2. Search for your venue
-                        3. Click "Share" button on the right
-                        4. Click "HTML" tab
-                        5. Copy the iframe src URL and replace above
-                        
-                        Or manually update coordinates:
-                        Replace 35.6892,51.3890 with your venue's latitude,longitude
-                      */}
                     </div>
                     
                     {/* Navigation Button */}
                     <motion.a
-                      href="https://www.google.com/maps/dir/?api=1&destination=35.7638266,51.4701472"
+                      href={navigationUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-3 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg transition-all text-sm"

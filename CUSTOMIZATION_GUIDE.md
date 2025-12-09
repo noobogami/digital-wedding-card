@@ -1,135 +1,175 @@
-# راهنمای سفارشی‌سازی | Customization Quick Guide
+# 🎨 Customization Guide
 
-## 🎯 Quick Checklist
+This guide will help you customize your digital wedding card easily!
 
-Follow these steps to customize your wedding website:
+## ⚡ Quick Start - Config File (Easiest Way!)
 
-### ✅ Step 1: Add Your Information
+**All main wedding details are in one file:** `src/config.js`
 
-Search for `PLACEHOLDER` in all files and replace with your actual information:
+Just edit this file to customize:
+- Couple names
+- Event type and date
+- Location and coordinates
+- Custom message
+- Colors
 
-1. **Hero.jsx** - Couple names, date, time
-2. **Details.jsx** - Ceremony details, contact info
-3. **Location.jsx** - Venue address, coordinates
-4. **App.jsx** - Footer year
+### Example `src/config.js`:
 
-### ✅ Step 2: Add Background Music
+```javascript
+export const weddingConfig = {
+  // Couple Names
+  couple: {
+    bride: "آتنا",
+    groom: "علی",
+  },
 
-```bash
-# Add your music file to:
-public/music/background-music.mp3
+  // Event Details
+  event: {
+    type: "جشن بله برون - نامزدی", // Event type
+    date: {
+      dayName: "پنجشنبه", // Day of week in Farsi
+      persianDate: "۱۳ آذر ۱۴۰۴", // Persian date
+      time: "۱۹:۰۰", // Time in 24-hour format
+    },
+  },
+
+  // Location Details
+  location: {
+    name: "تالار پذیرایی ساقدوش",
+    address: "پاسداران - انتهای بوستان دوم- خ افشاری (ساقدوش) - تالار پذیرایی ساقدوش",
+    coordinates: {
+      latitude: 35.7638266,
+      longitude: 51.4701472,
+    },
+  },
+
+  // Custom Message (on the back of card)
+  message: {
+    intro: "قرار است قصه دلهایمان از همین جا آغاز شود.",
+    coupleNames: "آتنا و علی",
+    body: "با عشق قدم در مسیر تازه‌ای گذاشته‌اند و چه زیبا و خاطره‌انگیز است اگر شما هم شریک این لبخند و شادی باشید و این شب را به‌یادماندنی و پرشورتر کنید.",
+  },
+
+  // Colors (Tailwind CSS classes)
+  theme: {
+    titleGradient: "from-purple-600 via-pink-600 to-red-600",
+    subtitleGradient: "from-pink-500 to-purple-600",
+    buttonGradient: "from-purple-500 via-pink-500 to-red-500",
+  },
+};
 ```
 
-### ✅ Step 3: Setup Google Maps
+## 🎵 Background Music
 
-1. Get API key from: https://console.cloud.google.com/
-2. Update in `src/components/Location.jsx`:
-   - Replace `YOUR_GOOGLE_MAPS_API_KEY`
-   - Update `latitude` and `longitude`
+1. Place your music file in: `public/music/background-music.mp3`
+2. The music will auto-play when the envelope opens
+3. Users can control it with the floating music player
 
-### ✅ Step 4: Test Your Site
+### Supported Formats:
+- MP3 (recommended)
+- OGG
+- WAV
 
+## 🗺️ Location & Map
+
+The map and navigation are automatically generated from the coordinates in `config.js`!
+
+### How to get coordinates:
+
+1. Go to [Google Maps](https://www.google.com/maps)
+2. Find your venue
+3. Right-click on the location
+4. Click on the coordinates to copy them
+5. Update `config.js`:
+   ```javascript
+   coordinates: {
+     latitude: 35.7638266,  // First number
+     longitude: 51.4701472, // Second number
+   }
+   ```
+
+## 🎨 Color Customization
+
+You can customize the gradient colors in `config.js`:
+
+```javascript
+theme: {
+  // Format: "from-COLOR-SHADE via-COLOR-SHADE to-COLOR-SHADE"
+  titleGradient: "from-purple-600 via-pink-600 to-red-600",
+  subtitleGradient: "from-pink-500 to-purple-600",
+  buttonGradient: "from-purple-500 via-pink-500 to-red-500",
+}
+```
+
+### Available Colors:
+- `red`, `pink`, `purple`, `blue`, `green`, `yellow`, `orange`
+- Shades: `100`, `200`, `300`, `400`, `500`, `600`, `700`, `800`, `900`
+
+### Examples:
+- `"from-blue-400 to-purple-600"` - Blue to purple
+- `"from-pink-500 via-red-500 to-orange-500"` - Pink to red to orange
+- `"from-green-400 to-blue-500"` - Green to blue
+
+## 📱 Social Media Preview
+
+When sharing on Telegram, WhatsApp, etc., a preview image will appear.
+
+### To customize the preview:
+
+1. Create an image (1200x630 pixels recommended)
+2. Save it as: `public/preview.jpg`
+3. Update `index.html` meta tags if needed
+
+## 🚀 After Customization
+
+### 1. Test Locally:
 ```bash
 npm run dev
 ```
+Open http://localhost:5173 in your browser
 
-Visit: http://localhost:5173
-
-### ✅ Step 5: Build and Deploy
-
+### 2. Build for Production:
 ```bash
 npm run build
 ```
 
-Upload the `dist` folder to your hosting provider.
+### 3. Deploy:
+```bash
+# Rebuild Docker container
+docker-compose down
+docker-compose build --no-cache
+docker-compose up -d
+```
+
+### 4. Clear CDN Cache (if using ArvanCloud):
+- Go to ArvanCloud dashboard
+- Select your domain
+- Clear cache for the entire site
+
+## 🎯 Advanced Customization
+
+If you need more customization, you can edit these files:
+
+- **`src/components/Hero.jsx`** - Main card component
+- **`src/components/MusicPlayer.jsx`** - Music player
+- **`src/index.css`** - Global styles
+- **`tailwind.config.js`** - Tailwind CSS configuration
+
+## 📝 Tips
+
+1. **Test on mobile devices** - Most guests will view on mobile
+2. **Keep message short** - Long text may not fit in the card
+3. **Use high-quality music** - Better audio = better experience
+4. **Test the coordinates** - Click the navigation button to verify location
+
+## ❓ Need Help?
+
+Check your browser's console (F12) for any errors. Common issues:
+
+- **Music not playing**: Check file path and format
+- **Map not showing**: Verify coordinates are correct
+- **Styles not working**: Make sure Tailwind classes are valid
 
 ---
 
-## 📝 Detailed Replacement List
-
-### src/components/Hero.jsx
-```javascript
-Line 79: "عروس و داماد" → Your couple names
-Line 93: "روز جمعه" → Actual day
-Line 95: "۱۵ آذر ۱۴۰۴" → Actual date
-Line 97: "ساعت ۱۸:۰۰" → Actual time
-```
-
-### src/components/Details.jsx
-```javascript
-Lines 28-55: Update all ceremony details
-Line 92: Update ceremony description
-Line 134: Add your contact phone
-```
-
-### src/components/Location.jsx
-```javascript
-Line 14: venueAddress → Your venue address
-Line 17: googleMapsApiKey → Your API key
-Lines 18-19: latitude, longitude → Your coordinates
-Lines 109-115: Parking and accessibility info
-```
-
-### src/App.jsx
-```javascript
-Line 74: "۱۴۰۴" → Current Persian year
-```
-
----
-
-## 🎨 Color Customization
-
-Edit `tailwind.config.js`:
-
-```javascript
-colors: {
-  wedding: {
-    gold: '#D4AF37',
-    rose: '#E8C4C4',
-    cream: '#FFF8F0',
-    burgundy: '#800020',
-  }
-}
-```
-
----
-
-## 📱 Testing Checklist
-
-- [ ] All text is in Farsi and displays correctly
-- [ ] Date and time are correct
-- [ ] Venue address is correct
-- [ ] Google Maps shows correct location
-- [ ] Music plays (after user interaction)
-- [ ] Music controls work
-- [ ] Site is responsive on mobile
-- [ ] All animations work smoothly
-- [ ] Contact information is correct
-
----
-
-## 🚀 Deployment
-
-### Option 1: Vercel (Easiest)
-1. Push to GitHub
-2. Import to Vercel
-3. Deploy!
-
-### Option 2: Netlify
-1. Run `npm run build`
-2. Drag `dist` folder to Netlify
-3. Done!
-
-### Option 3: Any Hosting
-1. Run `npm run build`
-2. Upload `dist` folder to your server
-3. Configure domain
-
----
-
-## 🆘 Need Help?
-
-Common issues and solutions are in README.md
-
-موفق باشید! 💕
-
+Happy customizing! 💝✨
