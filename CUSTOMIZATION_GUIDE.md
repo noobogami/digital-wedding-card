@@ -17,45 +17,47 @@ Just edit this file to customize:
 
 ```javascript
 export const weddingConfig = {
-  // Couple Names
-  couple: {
-    bride: "آتنا",
-    groom: "علی",
-  },
+   // Couple Names
+   couple: {
+      bride: "عروس",
+      groom: "دوماد",
+   },
 
-  // Event Details
-  event: {
-    type: "جشن بله برون - نامزدی", // Event type
-    date: {
-      dayName: "پنجشنبه", // Day of week in Farsi
-      persianDate: "۱۳ آذر ۱۴۰۴", // Persian date
-      time: "۱۹:۰۰", // Time in 24-hour format
-    },
-  },
+   // Event Details
+   event: {
+      type: "جشن عروسی", // Event type (e.g., "جشن عروسی", "جشن نامزدی")
+      date: {
+         dayName: "جمعه", // Day of week in Farsi
+         persianDate: "۸ مرداد ۱۲۹۳", // Persian date
+         time: "۰۳:۰۰", // Time in 24-hour format
+      },
+   },
 
-  // Location Details
-  location: {
-    name: "تالار پذیرایی ساقدوش",
-    address: "پاسداران - انتهای بوستان دوم- خ افشاری (ساقدوش) - تالار پذیرایی ساقدوش",
-    coordinates: {
-      latitude: 35.7638266,
-      longitude: 51.4701472,
-    },
-  },
+   // Location Details
+   location: {
+      name: "تالار فلان",
+      address: "فلان شهر، فلان جا",
+      coordinates: {
+         latitude: 42.7638266,
+         longitude: 12.4701472,
+      },
+   },
 
-  // Custom Message (on the back of card)
-  message: {
-    intro: "قرار است قصه دلهایمان از همین جا آغاز شود.",
-    coupleNames: "آتنا و علی",
-    body: "با عشق قدم در مسیر تازه‌ای گذاشته‌اند و چه زیبا و خاطره‌انگیز است اگر شما هم شریک این لبخند و شادی باشید و این شب را به‌یادماندنی و پرشورتر کنید.",
-  },
+   // Custom Message (on the back of card)
+   message: {
+      intro: "قرار است قصه دلهایمان از همین جا آغاز شود.",
+      coupleNames: "عروس و دوماد", // Can be different from couple.bride/groom if needed
+      body: "با عشق قدم در مسیر تازه‌ای گذاشته‌اند و چه زیبا و خاطره‌انگیز است اگر شما هم شریک این لبخند و شادی باشید و این شب را به‌یادماندنی و پرشورتر کنید.",
+   },
 
-  // Colors (Tailwind CSS classes)
-  theme: {
-    titleGradient: "from-purple-600 via-pink-600 to-red-600",
-    subtitleGradient: "from-pink-500 to-purple-600",
-    buttonGradient: "from-purple-500 via-pink-500 to-red-500",
-  },
+   // Colors (Tailwind CSS classes)
+   theme: {
+      // You can customize gradient colors here
+      // These are Tailwind CSS gradient classes
+      titleGradient: "from-purple-600 via-pink-600 to-red-600",
+      subtitleGradient: "from-pink-500 to-purple-600",
+      buttonGradient: "from-purple-500 via-pink-500 to-red-500",
+   },
 };
 ```
 
@@ -83,8 +85,8 @@ The map and navigation are automatically generated from the coordinates in `conf
 5. Update `config.js`:
    ```javascript
    coordinates: {
-     latitude: 35.7638266,  // First number
-     longitude: 51.4701472, // Second number
+     latitude: 42.7638266,  // First number
+     longitude: 12.4701472, // Second number
    }
    ```
 

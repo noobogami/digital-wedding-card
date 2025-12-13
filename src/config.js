@@ -4,34 +4,34 @@
 export const weddingConfig = {
   // Couple Names
   couple: {
-    bride: "آتنا",
-    groom: "علی",
+    bride: "عروس",
+    groom: "دوماد",
   },
 
   // Event Details
   event: {
-    type: "جشن بله برون - نامزدی", // Event type (e.g., "جشن عروسی", "جشن نامزدی")
+    type: "جشن عروسی", // Event type (e.g., "جشن عروسی", "جشن نامزدی")
     date: {
-      dayName: "پنجشنبه", // Day of week in Farsi
-      persianDate: "۱۳ آذر ۱۴۰۴", // Persian date
-      time: "۱۹:۰۰", // Time in 24-hour format
+      dayName: "جمعه", // Day of week in Farsi
+      persianDate: "۸ مرداد ۱۲۹۳", // Persian date
+      time: "۰۳:۰۰", // Time in 24-hour format
     },
   },
 
   // Location Details
   location: {
-    name: "تالار پذیرایی ساقدوش",
-    address: "پاسداران - انتهای بوستان دوم- خ افشاری (ساقدوش) - تالار پذیرایی ساقدوش",
+    name: "تالار فلان",
+    address: "فلان شهر، فلان جا",
     coordinates: {
-      latitude: 35.7638266,
-      longitude: 51.4701472,
+      latitude: 42.7638266,
+      longitude: 12.4701472,
     },
   },
 
   // Custom Message (on the back of card)
   message: {
     intro: "قرار است قصه دلهایمان از همین جا آغاز شود.",
-    coupleNames: "آتنا و علی", // Can be different from couple.bride/groom if needed
+    coupleNames: "عروس و دوماد", // Can be different from couple.bride/groom if needed
     body: "با عشق قدم در مسیر تازه‌ای گذاشته‌اند و چه زیبا و خاطره‌انگیز است اگر شما هم شریک این لبخند و شادی باشید و این شب را به‌یادماندنی و پرشورتر کنید.",
   },
 
