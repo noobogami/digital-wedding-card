@@ -1,11 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute, FaMusic } from 'react-icons/fa';
+import { weddingConfig } from '../config';
 
 const MusicPlayer = ({ shouldPlay }) => {
+  const { theme, ui, music } = weddingConfig;
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [volume, setVolume] = useState(0.4);
+  const [volume, setVolume] = useState(music.defaultVolume);
   const [showPlayer, setShowPlayer] = useState(false);
   const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
   const audioRef = useRef(null);
@@ -89,7 +91,7 @@ const MusicPlayer = ({ shouldPlay }) => {
           2. Update the src attribute below
           3. Or use a URL to a hosted music file
         */}
-        <source src="/music/background-music.mp3?v=2" type="audio/mpeg" />
+        <source src={music.src} type="audio/mpeg" />
         مرورگر شما از پخش موسیقی پشتیبانی نمی‌کند.
       </audio>
 
@@ -111,10 +113,10 @@ const MusicPlayer = ({ shouldPlay }) => {
                     animate={{ rotate: isPlaying ? 360 : 0 }}
                     transition={{ duration: 3, repeat: isPlaying ? Infinity : 0, ease: "linear" }}
                   >
-                    <FaMusic className="text-purple-500 text-xl" />
+                    <FaMusic className={`${theme.topIconColor} text-xl`} />
                   </motion.div>
                   <span className="text-sm font-semibold text-gray-700 font-vazir">
-                    موسیقی مراسم
+                    {ui.musicLabel}
                   </span>
                 </div>
                 <button
@@ -132,7 +134,7 @@ const MusicPlayer = ({ shouldPlay }) => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={togglePlay}
-                  className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-shadow"
+                  className={`bg-gradient-to-r ${theme.buttonGradient} text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-shadow`}
                 >
                   {isPlaying ? (
                     <FaPause className="text-xl" />
@@ -145,7 +147,7 @@ const MusicPlayer = ({ shouldPlay }) => {
                 <div className="flex items-center gap-2 flex-1">
                   <button
                     onClick={toggleMute}
-                    className="text-gray-600 hover:text-purple-500 transition-colors"
+                    className={`text-gray-600 ${theme.iconHover} transition-colors`}
                   >
                     {isMuted || volume === 0 ? (
                       <FaVolumeMute className="text-lg" />
@@ -160,7 +162,7 @@ const MusicPlayer = ({ shouldPlay }) => {
                     step="0.01"
                     value={volume}
                     onChange={handleVolumeChange}
-                    className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-500"
+                    className={`flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer ${theme.volumeAccent}`}
                   />
                 </div>
               </div>
@@ -171,7 +173,7 @@ const MusicPlayer = ({ shouldPlay }) => {
                   {[...Array(5)].map((_, i) => (
                     <motion.div
                       key={i}
-                      className="w-1 bg-gradient-to-t from-purple-500 to-pink-500 rounded-full"
+                      className={`w-1 bg-gradient-to-t ${theme.buttonGradient} rounded-full`}
                       animate={{
                         height: ["10px", "25px", "10px"],
                       }}
@@ -197,7 +199,7 @@ const MusicPlayer = ({ shouldPlay }) => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => setShowPlayer(true)}
-          className="fixed bottom-6 left-6 z-50 bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-full shadow-2xl"
+          className={`fixed bottom-6 left-6 z-50 bg-gradient-to-r ${theme.buttonGradient} text-white p-4 rounded-full shadow-2xl`}
         >
           <FaMusic className="text-2xl" />
         </motion.button>

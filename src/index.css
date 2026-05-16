@@ -11,7 +11,7 @@
 body {
   font-family: 'Vazir', sans-serif;
   direction: rtl;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--body-bg, #faf7f2);
   overflow-x: hidden;
 }
 
