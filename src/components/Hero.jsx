@@ -2,32 +2,37 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { weddingConfig } from '../config';
-import { buildMapIrEmbedUrl, buildMapIrNavigationUrl } from '../mapUrls';
+import { buildMapIrNavigationUrl } from '../mapUrls';
+import VenueMap from './VenueMap';
 import { DecoIcon } from '../theme';
 
 const Hero = ({ onEnvelopeOpen }) => {
   const { theme, ui } = weddingConfig;
   const [envelopeOpened, setEnvelopeOpened] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  const [mapReady, setMapReady] = useState(false);
   const [confetti, setConfetti] = useState([]);
   const [floatingHearts, setFloatingHearts] = useState([]);
 
   const { latitude, longitude } = weddingConfig.location.coordinates;
   const { map: mapSettings = {} } = weddingConfig.location;
   const mapZoom = mapSettings.zoom ?? 16;
-  const mapMarkerLabel = mapSettings.markerLabel?.trim() || weddingConfig.location.name;
   const mapPreviewHeight = mapSettings.previewHeight ?? 140;
-  const mapEmbedUrl = buildMapIrEmbedUrl({
-    latitude,
-    longitude,
-    zoom: mapZoom,
-    markerLabel: mapMarkerLabel,
-  });
   const navigationUrl = buildMapIrNavigationUrl({
     latitude,
     longitude,
     zoom: mapZoom,
   });
+
+  // Mount map after card flip — Mapbox GL breaks inside an active 3D transform
+  useEffect(() => {
+    if (!showDetails) {
+      setMapReady(false);
+      return undefined;
+    }
+    const timer = window.setTimeout(() => setMapReady(true), 850);
+    return () => window.clearTimeout(timer);
+  }, [showDetails]);
 
   // Generate confetti when envelope opens
   useEffect(() => {
@@ -537,26 +542,14 @@ const Hero = ({ onEnvelopeOpen }) => {
                     </div>
                   </div>
 
-                  {/* Map - Map.ir embed */}
+                  {/* Map - Map.ir React component */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.5 }}
                     className="space-y-2"
                   >
-                    <div className="rounded-xl overflow-hidden border border-gray-200">
-                      <iframe
-                        src={mapEmbedUrl}
-                        width="100%"
-                        height={mapPreviewHeight}
-                        style={{ border: 0 }}
-                        allowFullScreen
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        title="محل برگزاری مراسم"
-                      />
-                    </div>
-                    
+                    <VenueMap height={mapPreviewHeight} ready={mapReady} />
                     {/* Navigation Button */}
                     <motion.a
                       href={navigationUrl}

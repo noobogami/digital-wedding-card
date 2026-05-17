@@ -31,10 +31,10 @@ export const weddingConfig = {
       latitude: 35.6892,
       longitude: 51.3890,
     },
-    // Map.ir preview — https://help.map.ir/mapp-showmap/
+    // Map.ir — https://github.com/map-ir/mapir-react-component
     map: {
+      apiKey: "YOUR_MAP_IR_API_KEY",
       zoom: 16,
-      markerLabel: "",
       previewHeight: 140,
     },
   },
