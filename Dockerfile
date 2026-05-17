@@ -14,6 +14,9 @@ RUN npm ci
 # Copy source code
 COPY . .
 
+# Local config is gitignored; use example if missing (override on server before build)
+RUN if [ ! -f src/config.js ]; then cp src/config.example.js src/config.js; fi
+
 # Build the application
 RUN npm run build
 

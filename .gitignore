@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Per-environment wedding details (copy from src/config.example.js)
+src/config.js
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
