@@ -1,15 +1,12 @@
-version: '3.8'
-
 services:
   wedding-card:
+    # Build for typical Ubuntu VPS (amd64), even on Apple Silicon Macs
+    platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile
+    image: digital-wedding-card:latest
     container_name: digital-wedding-card
     ports:
       - "5989:80"
     restart: unless-stopped
-    # Optional: Add environment variables if needed
-    # environment:
-    #   - NODE_ENV=production
-

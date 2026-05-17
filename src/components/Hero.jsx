@@ -2,18 +2,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { weddingConfig } from '../config';
-import { buildNativeMapsDirectionsUrl } from '../mapUrls';
+import DirectionsButton from './DirectionsButton';
+import EnvelopePostcard from './EnvelopePostcard';
 import { DecoIcon } from '../theme';
 
 const Hero = ({ onEnvelopeOpen }) => {
   const { theme, ui } = weddingConfig;
+  const envelopeImage = weddingConfig.envelope?.image?.trim();
+  const envelopeImageAlt = weddingConfig.envelope?.alt?.trim() || '';
   const [envelopeOpened, setEnvelopeOpened] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [confetti, setConfetti] = useState([]);
   const [floatingHearts, setFloatingHearts] = useState([]);
 
   const { latitude, longitude } = weddingConfig.location.coordinates;
-  const navigationUrl = buildNativeMapsDirectionsUrl({ latitude, longitude });
 
   // Generate confetti when envelope opens
   useEffect(() => {
@@ -523,21 +525,21 @@ const Hero = ({ onEnvelopeOpen }) => {
                     </div>
                   </div>
 
-                  {/* Directions — opens native maps on the device */}
-                  <motion.a
-                    href={navigationUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  {/* Directions — app picker on phone, Google Maps on desktop */}
+                  <DirectionsButton
+                    latitude={latitude}
+                    longitude={longitude}
+                    label={weddingConfig.location.name}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.5 }}
-                    className={`flex items-center justify-center gap-2 bg-gradient-to-r ${theme.buttonGradient} text-white px-3 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg transition-all text-sm`}
+                    className={`flex w-full items-center justify-center gap-2 bg-gradient-to-r ${theme.buttonGradient} text-white px-3 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg transition-all text-sm`}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <FaMapMarkerAlt className="text-base" />
                     <span className="font-vazir">{ui.navigateButton}</span>
-                  </motion.a>
+                  </DirectionsButton>
                 </motion.div>
 
                 {/* Back Button */}
@@ -549,7 +551,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                 >
                   <motion.button
                     onClick={() => setShowDetails(false)}
-                    className={`${theme.backButtonText} font-semibold font-vazir text-base`}
+                    className={`${theme.backButtonText} font-semibold font-vazir text-base mb-6`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -591,90 +593,18 @@ const Hero = ({ onEnvelopeOpen }) => {
               <div className={`relative w-[500px] max-w-[90vw] h-[600px] sm:h-[720px] bg-gradient-to-br ${theme.envelopeOuter} rounded-2xl`}>
                 {/* Back of envelope */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${theme.envelopeInner} rounded-2xl shadow-2xl border-2 ${theme.envelopeBorder}`} />
-                {/* Envelope flap - animated */}
-                <motion.div
-                  className={`absolute top-0 left-0 right-0 h-[300px] sm:h-[360px] bg-gradient-to-br ${theme.envelopeFlap} origin-top border-x border-t ${theme.envelopeBorder} rounded-t-2xl`}
-                  animate={{
-                    clipPath: envelopeOpened 
-                      ? 'polygon(0 0, 50% 70%, 100% 0)'
-                      : 'polygon(0 0, 50% 65%, 100% 0)',
-                  }}
-                  whileHover={!envelopeOpened ? {
-                    clipPath: 'polygon(0 0, 50% 55%, 100% 0)',
-                  } : {}}
-                  transition={{ duration: 0.3 }}
-                >
-                  {/* Flap shadow/depth */}
-                  <div className={`absolute inset-0 bg-gradient-to-b from-transparent ${theme.envelopeFlapShadow}`} />
-                  
-                  {/* Flap decorative border */}
-                  <div className={`absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r ${theme.dividerGradient}`} />
-                </motion.div>
 
-                {/* Wax seal */}
-                <div 
-                  className="absolute top-[270px] sm:top-[330px] left-1/2 -translate-x-1/2 w-20 h-20 sm:w-24 sm:h-24 z-10"
-                >
-                  <motion.div
-                    className={`w-full h-full bg-gradient-to-br ${theme.sealGradient} rounded-full shadow-2xl flex items-center justify-center`}
-                    whileHover={!envelopeOpened ? { 
-                      scale: 1.15, 
-                      rotate: [0, -10, 10, -10, 0],
-                    } : {}}
-                    animate={{
-                      boxShadow: theme.sealGlow.map((g) => `0 10px 35px ${g}`),
-                    }}
-                    transition={{ 
-                      boxShadow: {
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      },
-                      hover: {
-                        type: "spring", 
-                        stiffness: 400, 
-                        damping: 10,
-                      }
-                    }}
-                  >
-                    <motion.div
-                      animate={{
-                        scale: [1, 1.2, 1],
-                        rotate: [0, 10, -10, 0],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      <DecoIcon className="text-white text-4xl drop-shadow-lg" />
-                    </motion.div>
-                    {/* Seal texture */}
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/30 to-transparent pointer-events-none" />
-                    {/* Sparkle on seal */}
-                    <motion.div
-                      className="absolute top-2 right-2 text-yellow-300 text-sm"
-                      animate={{
-                        opacity: [0, 1, 0],
-                        scale: [0, 1, 0],
-                        rotate: [0, 180, 360],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      ✨
-                    </motion.div>
-                  </motion.div>
-                </div>
+                <EnvelopePostcard
+                  image={envelopeImage}
+                  imageAlt={envelopeImageAlt}
+                  theme={theme}
+                  envelopeOpened={envelopeOpened}
+                />
 
                 {/* Decorative elements */}
                 {!envelopeOpened && (
-                  <motion.div 
-                    className="absolute bottom-16 sm:bottom-20 left-0 right-0 text-center pointer-events-none"
+                  <motion.div
+                    className="absolute bottom-12 sm:bottom-16 left-0 right-0 z-[6] text-center pointer-events-none"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ 
                       opacity: 1,

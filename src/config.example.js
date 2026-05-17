@@ -51,6 +51,12 @@ export const weddingConfig = {
     musicLabel: "موسیقی مراسم",
   },
 
+  // Square photo on the envelope (postcard style). Put file in public/images/
+  envelope: {
+    image: "/images/envelope-photo.jpg",
+    alt: "عکس دعوتنامه",
+  },
+
   music: {
     src: "/music/background-music.mp3",
     defaultVolume: 0.4,
