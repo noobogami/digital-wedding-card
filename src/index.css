@@ -88,27 +88,3 @@ html {
 .-z-10 {
   z-index: -10;
 }
-
-/* Clean map preview on invitation card (no extra controls) */
-.venue-map-preview .mapboxgl-map,
-.venue-map-preview .mapboxgl-canvas-container,
-.venue-map-preview .mapboxgl-canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.venue-map-preview .mapboxgl-marker {
-  z-index: 2;
-}
-
-.venue-map-preview .mapboxgl-marker img {
-  max-width: none;
-}
-
-.venue-map-preview .mapboxgl-ctrl-bottom-left,
-.venue-map-preview .mapboxgl-ctrl-bottom-right,
-.venue-map-preview .mapboxgl-ctrl-top-left,
-.venue-map-preview .mapboxgl-ctrl-top-right {
-  display: none;
-}
-

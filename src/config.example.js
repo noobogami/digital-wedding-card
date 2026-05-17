@@ -31,12 +31,6 @@ export const weddingConfig = {
       latitude: 35.6892,
       longitude: 51.3890,
     },
-    // Map.ir — https://corp.map.ir/registration/ (uses mapbox-gl directly)
-    map: {
-      apiKey: "YOUR_MAP_IR_API_KEY",
-      zoom: 16,
-      previewHeight: 140,
-    },
   },
 
   // Use \n in intro/body for line breaks, e.g. "خط اول\nخط دوم"

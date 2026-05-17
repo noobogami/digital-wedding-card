@@ -3,31 +3,17 @@ import { FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { weddingConfig } from '../config';
 import { buildNativeMapsDirectionsUrl } from '../mapUrls';
-import VenueMap from './VenueMap';
 import { DecoIcon } from '../theme';
 
 const Hero = ({ onEnvelopeOpen }) => {
   const { theme, ui } = weddingConfig;
   const [envelopeOpened, setEnvelopeOpened] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
-  const [mapReady, setMapReady] = useState(false);
   const [confetti, setConfetti] = useState([]);
   const [floatingHearts, setFloatingHearts] = useState([]);
 
   const { latitude, longitude } = weddingConfig.location.coordinates;
-  const { map: mapSettings = {} } = weddingConfig.location;
-  const mapPreviewHeight = mapSettings.previewHeight ?? 140;
   const navigationUrl = buildNativeMapsDirectionsUrl({ latitude, longitude });
-
-  // Mount map after card flip — Mapbox GL breaks inside an active 3D transform
-  useEffect(() => {
-    if (!showDetails) {
-      setMapReady(false);
-      return undefined;
-    }
-    const timer = window.setTimeout(() => setMapReady(true), 850);
-    return () => window.clearTimeout(timer);
-  }, [showDetails]);
 
   // Generate confetti when envelope opens
   useEffect(() => {
@@ -537,27 +523,21 @@ const Hero = ({ onEnvelopeOpen }) => {
                     </div>
                   </div>
 
-                  {/* Map - Map.ir React component */}
-                  <motion.div
+                  {/* Directions — opens native maps on the device */}
+                  <motion.a
+                    href={navigationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.5 }}
-                    className="space-y-2"
+                    className={`flex items-center justify-center gap-2 bg-gradient-to-r ${theme.buttonGradient} text-white px-3 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg transition-all text-sm`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    <VenueMap height={mapPreviewHeight} ready={mapReady} />
-                    {/* Navigation Button */}
-                    <motion.a
-                      href={navigationUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`flex items-center justify-center gap-2 bg-gradient-to-r ${theme.buttonGradient} text-white px-3 py-2 rounded-xl font-semibold shadow-md hover:shadow-lg transition-all text-sm`}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <FaMapMarkerAlt className="text-base" />
-                      <span className="font-vazir">{ui.navigateButton}</span>
-                    </motion.a>
-                  </motion.div>
+                    <FaMapMarkerAlt className="text-base" />
+                    <span className="font-vazir">{ui.navigateButton}</span>
+                  </motion.a>
                 </motion.div>
 
                 {/* Back Button */}
