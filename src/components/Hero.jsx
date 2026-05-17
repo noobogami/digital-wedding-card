@@ -474,7 +474,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className={`${theme.messageBoxBackground} rounded-2xl p-4 mb-4 border ${theme.messageBoxBorder}`}
                   >
-                    <p className="text-sm text-gray-700 font-vazir leading-relaxed mb-2">
+                    <p className="text-sm text-gray-700 font-vazir leading-relaxed mb-2 whitespace-pre-line">
                       {weddingConfig.message.intro}
                     </p>
                     <div className="flex items-center justify-center gap-2 my-3">
@@ -485,7 +485,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                     <p className={`text-xl font-bold ${theme.messageNamesText} font-vazir mb-2`}>
                       {weddingConfig.message.coupleNames}
                     </p>
-                    <p className="text-sm text-gray-700 font-vazir leading-relaxed">
+                    <p className="text-sm text-gray-700 font-vazir leading-relaxed whitespace-pre-line">
                       {weddingConfig.message.body}
                     </p>
                   </motion.div>
