@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { weddingConfig } from '../config';
-import { buildMapIrNavigationUrl } from '../mapUrls';
+import { buildNativeMapsDirectionsUrl } from '../mapUrls';
 import VenueMap from './VenueMap';
 import { DecoIcon } from '../theme';
 
@@ -16,13 +16,8 @@ const Hero = ({ onEnvelopeOpen }) => {
 
   const { latitude, longitude } = weddingConfig.location.coordinates;
   const { map: mapSettings = {} } = weddingConfig.location;
-  const mapZoom = mapSettings.zoom ?? 16;
   const mapPreviewHeight = mapSettings.previewHeight ?? 140;
-  const navigationUrl = buildMapIrNavigationUrl({
-    latitude,
-    longitude,
-    zoom: mapZoom,
-  });
+  const navigationUrl = buildNativeMapsDirectionsUrl({ latitude, longitude });
 
   // Mount map after card flip — Mapbox GL breaks inside an active 3D transform
   useEffect(() => {

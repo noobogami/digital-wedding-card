@@ -31,7 +31,7 @@ export const weddingConfig = {
       latitude: 35.6892,
       longitude: 51.3890,
     },
-    // Map.ir — https://github.com/map-ir/mapir-react-component
+    // Map.ir — https://corp.map.ir/registration/ (uses mapbox-gl directly)
     map: {
       apiKey: "YOUR_MAP_IR_API_KEY",
       zoom: 16,

@@ -97,10 +97,12 @@ html {
   height: 100% !important;
 }
 
-.venue-map-marker {
-  cursor: pointer;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
-  line-height: 0;
+.venue-map-preview .mapboxgl-marker {
+  z-index: 2;
+}
+
+.venue-map-preview .mapboxgl-marker img {
+  max-width: none;
 }
 
 .venue-map-preview .mapboxgl-ctrl-bottom-left,
