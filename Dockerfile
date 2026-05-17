@@ -9,7 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install devDependencies too (vite, tailwind, etc.) even when NODE_ENV=production
-RUN npm ci --include=dev
+RUN npm ci
 
 # Copy source code
 COPY . .
