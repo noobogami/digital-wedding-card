@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { weddingConfig } from '../config';
+import { buildMapIrEmbedUrl, buildMapIrNavigationUrl } from '../mapUrls';
 import { DecoIcon } from '../theme';
 
 const Hero = ({ onEnvelopeOpen }) => {
@@ -11,10 +12,22 @@ const Hero = ({ onEnvelopeOpen }) => {
   const [confetti, setConfetti] = useState([]);
   const [floatingHearts, setFloatingHearts] = useState([]);
 
-  // Generate map URLs from config
   const { latitude, longitude } = weddingConfig.location.coordinates;
-  const mapEmbedUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${longitude-0.004}%2C${latitude-0.002}%2C${longitude+0.004}%2C${latitude+0.002}&layer=mapnik&marker=${latitude}%2C${longitude}`;
-  const navigationUrl = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
+  const { map: mapSettings = {} } = weddingConfig.location;
+  const mapZoom = mapSettings.zoom ?? 16;
+  const mapMarkerLabel = mapSettings.markerLabel?.trim() || weddingConfig.location.name;
+  const mapPreviewHeight = mapSettings.previewHeight ?? 140;
+  const mapEmbedUrl = buildMapIrEmbedUrl({
+    latitude,
+    longitude,
+    zoom: mapZoom,
+    markerLabel: mapMarkerLabel,
+  });
+  const navigationUrl = buildMapIrNavigationUrl({
+    latitude,
+    longitude,
+    zoom: mapZoom,
+  });
 
   // Generate confetti when envelope opens
   useEffect(() => {
@@ -524,7 +537,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                     </div>
                   </div>
 
-                  {/* Map - OpenStreetMap (Free, No API Key!) */}
+                  {/* Map - Map.ir embed */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -535,10 +548,11 @@ const Hero = ({ onEnvelopeOpen }) => {
                       <iframe
                         src={mapEmbedUrl}
                         width="100%"
-                        height="140"
+                        height={mapPreviewHeight}
                         style={{ border: 0 }}
-                        allowFullScreen=""
+                        allowFullScreen
                         loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
                         title="محل برگزاری مراسم"
                       />
                     </div>
