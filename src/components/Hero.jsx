@@ -240,24 +240,50 @@ const Hero = ({ onEnvelopeOpen }) => {
                 </motion.div>
 
                 <div className="flex-1 flex flex-col justify-center">
-                  {/* Couple Names */}
-                  <motion.h1
+                  {/* Couple names + family names */}
+                  <motion.div
                     initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
-                    animate={{ 
-                      opacity: 1, 
-                      scale: 1,
-                      rotate: 0,
-                    }}
-                    transition={{ 
-                      type: "spring",
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    transition={{
+                      type: 'spring',
                       stiffness: 200,
                       damping: 15,
-                      delay: 0.3 
+                      delay: 0.3,
                     }}
-                    className={`text-5xl md:text-6xl font-bold bg-gradient-to-r ${theme.titleGradient} bg-clip-text text-transparent mb-2 font-vazir text-center`}
+                    className="mb-2 font-vazir text-center"
                   >
-                    {weddingConfig.couple.bride} و {weddingConfig.couple.groom}
-                  </motion.h1>
+                    <h1 className="flex flex-wrap items-end justify-center gap-x-3 gap-y-2 sm:gap-x-5 font-bold">
+                      <span className="inline-flex flex-col items-center leading-tight">
+                        <span
+                          className={`text-4xl sm:text-5xl md:text-6xl bg-gradient-to-r ${theme.titleGradient} bg-clip-text text-transparent`}
+                        >
+                          {weddingConfig.couple.bride}
+                        </span>
+                        {weddingConfig.couple.brideLastName?.trim() && (
+                          <span
+                            className={`mt-1 text-lg sm:text-xl md:text-2xl font-semibold ${theme.coupleLastNameText}`}
+                          >
+                            {weddingConfig.couple.brideLastName}
+                          </span>
+                        )}
+                      </span>
+                      <span className="pb-1 sm:pb-2 text-2xl sm:text-3xl font-normal opacity-75">و</span>
+                      <span className="inline-flex flex-col items-center leading-tight">
+                        <span
+                          className={`text-4xl sm:text-5xl md:text-6xl bg-gradient-to-r ${theme.titleGradient} bg-clip-text text-transparent`}
+                        >
+                          {weddingConfig.couple.groom}
+                        </span>
+                        {weddingConfig.couple.groomLastName?.trim() && (
+                          <span
+                            className={`mt-1 text-lg sm:text-xl md:text-2xl font-semibold ${theme.coupleLastNameText}`}
+                          >
+                            {weddingConfig.couple.groomLastName}
+                          </span>
+                        )}
+                      </span>
+                    </h1>
+                  </motion.div>
 
                   {/* Wedding Title */}
                   <motion.div
@@ -464,9 +490,6 @@ const Hero = ({ onEnvelopeOpen }) => {
                   transition={{ duration: 0.4, delay: 0.2 }}
                   className="text-center mb-6"
                 >
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-800 font-vazir mb-4">
-                    {ui.detailsTitle}
-                  </h2>
                   
                   {/* Beautiful Message */}
                   <motion.div

@@ -166,26 +166,6 @@ const MusicPlayer = ({ shouldPlay }) => {
                   />
                 </div>
               </div>
-
-              {/* Visual indicator */}
-              {isPlaying && (
-                <div className="flex gap-1 justify-center mt-3">
-                  {[...Array(5)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className={`w-1 bg-gradient-to-t ${theme.buttonGradient} rounded-full`}
-                      animate={{
-                        height: ["10px", "25px", "10px"],
-                      }}
-                      transition={{
-                        duration: 0.8,
-                        repeat: Infinity,
-                        delay: i * 0.1,
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
             </div>
           </motion.div>
         )}

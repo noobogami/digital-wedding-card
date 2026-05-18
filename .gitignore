@@ -12,8 +12,11 @@ dist
 dist-ssr
 *.local
 
-# Per-environment wedding details (copy from src/config.example.js)
-src/config.js
+# Deployment secrets (copy from .env.example)
+.env
+
+# Optional local runtime overrides (loaded before the app bundle)
+public/wedding-config.local.js
 
 # Editor directories and files
 .vscode/*

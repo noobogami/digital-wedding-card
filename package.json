@@ -4,8 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "config:sync": "node scripts/generate-wedding-config.mjs public/wedding-config.js",
+    "dev": "npm run config:sync && vite",
+    "build": "npm run config:sync && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
