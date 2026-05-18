@@ -28,7 +28,6 @@ export const weddingDefaults = {
 
   message: {
     intro: 'متن کوتاه دعوت (خط اول)',
-    coupleNames: 'نام عروس و نام داماد',
     body: 'متن تکمیلی دعوتنامه.',
   },
 
@@ -55,24 +54,25 @@ export const weddingDefaults = {
     pageBackground: 'bg-gradient-to-br from-amber-50 via-rose-50/80 to-stone-100',
     bodyColor: '#faf7f2',
 
-    titleGradient: 'from-amber-800 via-yellow-700 to-rose-800',
-    subtitleGradient: 'from-rose-800 to-amber-700',
+    titleGradient: 'from-yellow-600 via-amber-500 to-yellow-700',
+    subtitleGradient: 'from-yellow-700 via-amber-600 to-yellow-800',
+    coupleNameText: 'text-yellow-600',
+    coupleLastNameText: 'text-yellow-700',
     buttonGradient: 'from-amber-600 via-yellow-500 to-amber-700',
     buttonHoverShadow: 'rgba(180, 83, 9, 0.45)',
 
     dividerGradient: 'from-transparent via-amber-300 to-transparent',
     cardBorder: 'border-amber-200/80',
-    dateBoxBackground: 'bg-gradient-to-r from-amber-50 via-rose-50/50 to-stone-50',
-    dateBoxBorder: 'border-amber-200',
+    dateBoxBackground: 'bg-gradient-to-r from-amber-50 via-yellow-50/90 to-amber-50',
+    dateBoxBorder: 'border-amber-200/90',
     messageBoxBackground: 'bg-gradient-to-br from-amber-50/90 via-rose-50/60 to-stone-50',
     messageBoxBorder: 'border-amber-200/60',
     messageDivider: 'from-transparent via-amber-400 to-transparent',
 
-    dateDayText: 'text-amber-800',
-    dateMainText: 'from-amber-800 to-rose-800',
-    dateTimeText: 'text-rose-700',
+    dateDayText: 'text-yellow-800',
+    dateMainText: 'text-yellow-600',
+    dateTimeText: 'text-amber-500',
     messageNamesText: 'text-amber-800',
-    coupleLastNameText: 'text-amber-700/85',
     backButtonText: 'text-amber-700 hover:text-amber-900',
     envelopeHintText: 'text-amber-900',
 

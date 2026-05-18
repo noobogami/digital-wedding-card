@@ -255,7 +255,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                     <h1 className="flex flex-wrap items-end justify-center gap-x-3 gap-y-2 sm:gap-x-5 font-bold">
                       <span className="inline-flex flex-col items-center leading-tight">
                         <span
-                          className={`text-4xl sm:text-5xl md:text-6xl bg-gradient-to-r ${theme.titleGradient} bg-clip-text text-transparent`}
+                          className={`text-4xl sm:text-5xl md:text-6xl ${theme.coupleNameText}`}
                         >
                           {weddingConfig.couple.bride}
                         </span>
@@ -270,7 +270,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                       <span className="pb-1 sm:pb-2 text-2xl sm:text-3xl font-normal opacity-75">    |    </span>
                       <span className="inline-flex flex-col items-center leading-tight">
                         <span
-                          className={`text-4xl sm:text-5xl md:text-6xl bg-gradient-to-r ${theme.titleGradient} bg-clip-text text-transparent`}
+                          className={`text-4xl sm:text-5xl md:text-6xl ${theme.coupleNameText}`}
                         >
                           {weddingConfig.couple.groom}
                         </span>
@@ -342,7 +342,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                       {weddingConfig.event.date.dayName}
                     </motion.p>
                     <motion.p 
-                      className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${theme.dateMainText} bg-clip-text text-transparent font-vazir mb-1`}
+                      className={`text-3xl md:text-4xl font-bold ${theme.dateMainText} font-vazir mb-1`}
                       animate={{
                         scale: [1, 1.05, 1],
                       }}
@@ -506,9 +506,6 @@ const Hero = ({ onEnvelopeOpen }) => {
                       <DecoIcon className={`${theme.topIconColor} text-lg`} />
                       <div className={`h-px bg-gradient-to-r ${theme.messageDivider} flex-1`} />
                     </div>
-                    <p className={`text-xl font-bold ${theme.messageNamesText} font-vazir mb-2`}>
-                      {weddingConfig.message.coupleNames}
-                    </p>
                     <p className="text-sm text-gray-700 font-vazir leading-relaxed whitespace-pre-line">
                       {weddingConfig.message.body}
                     </p>

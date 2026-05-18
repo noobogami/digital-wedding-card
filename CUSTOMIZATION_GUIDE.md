@@ -46,7 +46,6 @@ export const weddingConfig = {
    // Custom Message (on the back of card)
    message: {
       intro: "قرار است قصه دلهایمان از همین جا آغاز شود.",
-      coupleNames: "عروس و دوماد", // Can be different from couple.bride/groom if needed
       body: "با عشق قدم در مسیر تازه‌ای گذاشته‌اند و چه زیبا و خاطره‌انگیز است اگر شما هم شریک این لبخند و شادی باشید و این شب را به‌یادماندنی و پرشورتر کنید.",
    },
 

@@ -18,6 +18,7 @@ RUN apk add --no-cache nodejs
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY scripts/generate-wedding-config.mjs /scripts/generate-wedding-config.mjs
+COPY index.html.template /index.html.template
 COPY scripts/docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 

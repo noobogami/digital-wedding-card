@@ -1,7 +1,7 @@
 // Wedding Card Configuration — EXAMPLE / TEMPLATE
 //
 // Local development:
-//   Edit .env, then run `npm run dev` (syncs public/wedding-config.js from .env).
+//   Edit .env, then run `npm run dev` (syncs wedding-config.js + index.html from .env).
 //   Defaults are in src/weddingDefaults.js.
 //
 // Docker / production:
