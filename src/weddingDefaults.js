@@ -39,7 +39,6 @@ export const weddingDefaults = {
     timeLabel: 'زمان',
     venueLabel: 'محل برگزاری',
     navigateButton: 'مسیریابی',
-    musicLabel: 'موسیقی مراسم',
   },
 
   envelope: {

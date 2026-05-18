@@ -267,7 +267,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                           </span>
                         )}
                       </span>
-                      <span className="pb-1 sm:pb-2 text-2xl sm:text-3xl font-normal opacity-75">و</span>
+                      <span className="pb-1 sm:pb-2 text-2xl sm:text-3xl font-normal opacity-75">    |    </span>
                       <span className="inline-flex flex-col items-center leading-tight">
                         <span
                           className={`text-4xl sm:text-5xl md:text-6xl bg-gradient-to-r ${theme.titleGradient} bg-clip-text text-transparent`}
@@ -339,7 +339,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                         ease: "easeInOut",
                       }}
                     >
-                      📅 {weddingConfig.event.date.dayName}
+                      {weddingConfig.event.date.dayName}
                     </motion.p>
                     <motion.p 
                       className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${theme.dateMainText} bg-clip-text text-transparent font-vazir mb-1`}
@@ -366,7 +366,7 @@ const Hero = ({ onEnvelopeOpen }) => {
                         delay: 0.5,
                       }}
                     >
-                      ⏰ ساعت {weddingConfig.event.date.time}
+                      ساعت {weddingConfig.event.date.time}
                     </motion.p>
                   </motion.div>
                 </div>
